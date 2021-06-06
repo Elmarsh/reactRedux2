@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { listeyeEKLE,isaretle } from "./actions";
+import { listeyeEKLE, isaretle, temizle } from "./actions";
 import "./styles.css";
 
 
@@ -38,11 +38,13 @@ const App = (props) => {
 
             <div className="liste">
                 {props.liste.map(item => (
-                    <div onClick={()=>props.isaretle(item.id)} className={item.tamamlandi ? "yapildi" : ""}>{item.baslik}</div>
+                    <div onClick={() => props.isaretle(item.id)} className={item.tamamlandi ? "yapildi" : ""}>{item.baslik}</div>
                 ))}
             </div>
 
-            <button className="temizle">Tamamlananları Temizle</button>
+
+
+            <button onClick={() => props.temizle()} className="temizle">Tamamlananları Temizle</button>
         </div>
     );
 }
@@ -54,4 +56,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { listeyeEKLE,isaretle })(App)
+export default connect(mapStateToProps, { listeyeEKLE, isaretle, temizle })(App)
